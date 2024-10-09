@@ -10,7 +10,7 @@ int main() {
     SOCKET clientSocket = INVALID_SOCKET;  // 初始化客户端套接字为INVALID_SOCKET，表示未创建套接字
     struct addrinfo hints, *serverInfo;  // addrinfo结构用于存储服务信息
     int K, result;  // K用于存储要发送的消息数量，result用于存储函数调用的返回值
-    char message[1024];  // 存储要发送的消息
+    char message[1024] = "Hello world";  // 存储要发送的消息
 
     // 初始化Winsock
     if (WSAStartup(MAKEWORD(2,2), &wsaData) != 0) {
@@ -24,15 +24,12 @@ int main() {
     hints.ai_socktype = SOCK_DGRAM;  // 指定套接字类型为数据报（UDP）
     hints.ai_protocol = IPPROTO_UDP;  // 指定协议为UDP
 
-    // 用户输入服务器的IP地址和端口号
-    std::cout << "Enter server IP address: ";
-    std::string serverIP;
-    std::cin >> serverIP;
-
-    std::cout << "Enter server port: ";
-    int serverPort;
-    std::cin >> serverPort;
-
+    // 服务器的IP地址和端口号
+    std::string serverIP = "172.26.48.150";
+    int serverPort = 12345;
+    std::cout << "Server IP address: " << serverIP << std::endl;
+    std::cout << "Server port: " << serverPort << std::endl;
+    
     // 用户输入要发送的消息数量
     std::cout << "Enter number of messages to send (K): ";
     std::cin >> K;
@@ -53,10 +50,6 @@ int main() {
         WSACleanup();  // 清理Winsock环境
         return 1;  // 退出程序
     }
-
-    // 用户输入要发送的消息内容
-    std::cout << "Enter message to send: ";
-    std::cin.getline(message, 1024);  // 使用getline读取一行输入，包括空格
 
     // 发送K条消息到服务器
     for (int i = 0; i < K; i++) {

@@ -59,6 +59,7 @@ int main() {
 
             // 输出客户端发送的消息数量
             std::cout << "Client " << clientKey << " has sent " << clientCounter[clientKey] << " messages" << std::endl;
+            std::cout << "------" << std::endl;
         }
     }
 
