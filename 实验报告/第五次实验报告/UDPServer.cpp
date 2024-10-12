@@ -53,7 +53,7 @@ int main() {
             std::cout << "Message: " << recvBuff << std::endl;  // 输出接收到的消息
 
             // 构建客户端标识字符串
-            std::string clientKey = std::string(inet_ntoa(client.sin_addr)) + ":" + std::to_string(ntohs(client.sin_port));
+            std::string clientKey = std::string(inet_ntoa(client.sin_addr));
             // 更新客户端发送的消息数量
             clientCounter[clientKey]++;
 
